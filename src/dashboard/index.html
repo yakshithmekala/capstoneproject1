@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENTINEL.AI — Scalable Fraud Intelligence, Data Engineering & Explainable AI (XAI)</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- FontAwesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Marquee Live Security Ticker -->
+  <div class="top-ticker">
+    <div class="ticker-content">
+      <span class="ticker-item"><i class="fa-solid fa-shield-cat pulse-icon"></i> <strong>SENTINEL ENGINE ACTIVE:</strong> Vectorized DuckDB Feature Store Operational</span>
+      <span class="ticker-item"><i class="fa-solid fa-indian-rupee-sign text-warning"></i> <strong>BAESENS ET AL. (2022) COST METRICS:</strong> Instance-Dependent Net Savings &amp; Cost-Optimal Threshold</span>
+      <span class="ticker-item"><i class="fa-solid fa-chart-line text-info"></i> <strong>PSI DRIFT DETECTOR:</strong> Continuous Population Stability Index Monitoring</span>
+      <span class="ticker-item"><i class="fa-solid fa-scale-balanced text-accent"></i> <strong>FAIRNESS AUDIT:</strong> Per-Group FPR &amp; Channel Parity Verification</span>
+      <span class="ticker-item"><i class="fa-solid fa-bolt text-success"></i> <strong>REAL-TIME SHAP XAI:</strong> Inference &amp; Attribution &lt; 30ms</span>
+      <span class="ticker-item"><i class="fa-solid fa-microchip text-primary"></i> <strong>LIGHTGBM CLASSIFIER:</strong> Cost-Weighted Imbalance Loss</span>
+    </div>
+  </div>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div class="brand-text">
+          <h2>SENTINEL<span>.AI</span></h2>
+          <p>Fraud Intelligence Platform</p>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#section-live" class="nav-item active" id="nav-live">
+          <i class="fa-solid fa-radar"></i> Live Fraud Feed
+        </a>
+        <a href="#section-simulator" class="nav-item" id="nav-sim">
+          <i class="fa-solid fa-sliders"></i> Attack Simulator
+        </a>
+        <a href="#section-analytics" class="nav-item" id="nav-analytics">
+          <i class="fa-solid fa-brain"></i> XAI &amp; Model Metrics
+        </a>
+        <a href="#section-drift" class="nav-item" id="nav-drift">
+          <i class="fa-solid fa-chart-line"></i> PSI Drift Monitor
+        </a>
+        <a href="#section-fairness" class="nav-item" id="nav-fairness">
+          <i class="fa-solid fa-scale-balanced"></i> Fairness &amp; Bias Audit
+        </a>
+        <a href="#section-ablation" class="nav-item" id="nav-ablation">
+          <i class="fa-solid fa-flask-vial"></i> Ablation Benchmark
+        </a>
+      </nav>
+
+      <div class="sidebar-status-box">
+        <div class="status-title"><i class="fa-solid fa-server"></i> System Telemetry</div>
+        <div class="status-item">
+          <span>ETL Engine</span>
+          <span class="status-tag online">DuckDB Parquet</span>
+        </div>
+        <div class="status-item">
+          <span>Cost Metric</span>
+          <span class="status-tag online">Baesens '22</span>
+        </div>
+        <div class="status-item">
+          <span>Explainability</span>
+          <span class="status-tag online">SHAP Tree</span>
+        </div>
+        <div class="status-item">
+          <span>Drift Method</span>
+          <span class="status-tag online">PSI &lt; 0.10</span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="status-indicator">
+          <span class="pulse-dot"></span>
+          <span>Pipeline &amp; XAI Live</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-title">
+          <h1>Scalable Fraud Detection &amp; Explainable AI (XAI)</h1>
+          <p>Vectorized Data Engineering Pipelines, Baesens et al. (2022) Cost Metrics, SHAP Interpretability &amp; PSI Drift Auditing</p>
+        </div>
+        <div class="header-actions">
+          <button id="btn-refresh" class="btn btn-outline">
+            <i class="fa-solid fa-rotate-right"></i> Refresh Data
+          </button>
+          <button id="btn-run-sim" class="btn btn-primary">
+            <i class="fa-solid fa-play"></i> Attack Simulator
+          </button>
+        </div>
+      </header>
+
+      <!-- KPI Metrics Grid -->
+      <section class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Ingested Transactions</span>
+            <i class="fa-solid fa-database kpi-icon text-primary"></i>
+          </div>
+          <div class="kpi-value" id="kpi-total-tx">--</div>
+          <div class="kpi-subtext"><i class="fa-solid fa-layer-group"></i> Vectorized DuckDB Feature Store</div>
+        </div>
+
+        <div class="kpi-card danger">
+          <div class="kpi-header">
+            <span class="kpi-title">Flagged Fraud Anomaly</span>
+            <i class="fa-solid fa-triangle-exclamation kpi-icon text-danger"></i>
+          </div>
+          <div class="kpi-value" id="kpi-fraud-count">--</div>
+          <div class="kpi-subtext" id="kpi-fraud-rate">--% Fraud Rate</div>
+        </div>
+
+        <div class="kpi-card success">
+          <div class="kpi-header">
+            <span class="kpi-title">Fraud Loss Savings (ROI)</span>
+            <i class="fa-solid fa-money-bill-trend-up kpi-icon text-success"></i>
+          </div>
+          <div class="kpi-value" id="kpi-cost-savings">--%</div>
+          <div class="kpi-subtext" id="kpi-cost-savings-sub">Baesens et al. Cost Metric</div>
+        </div>
+
+        <div class="kpi-card info">
+          <div class="kpi-header">
+            <span class="kpi-title">Model PR-AUC &amp; F1</span>
+            <i class="fa-solid fa-bullseye kpi-icon text-info"></i>
+          </div>
+          <div class="kpi-value" id="kpi-pr-auc">--</div>
+          <div class="kpi-subtext"><i class="fa-solid fa-sliders"></i> Cost-Weighted Optimization</div>
+        </div>
+
+        <div class="kpi-card accent">
+          <div class="kpi-header">
+            <span class="kpi-title">Inference &amp; SHAP Latency</span>
+            <i class="fa-solid fa-bolt kpi-icon text-accent"></i>
+          </div>
+          <div class="kpi-value" id="kpi-latency">&lt; 25 ms</div>
+          <div class="kpi-subtext"><i class="fa-solid fa-stopwatch"></i> Sub-second Real-time SLA</div>
+        </div>
+      </section>
+
+      <!-- Section: Live Fraud Stream & Transaction Table -->
+      <section class="content-section" id="section-live">
+        <div class="section-card">
+          <div class="section-header">
+            <div>
+              <h3><i class="fa-solid fa-list-check text-primary"></i> Live Financial Transaction Stream</h3>
+              <p>Real-time financial transactions scored by vectorized feature store &amp; LightGBM classifier</p>
+            </div>
+            <div class="filter-group">
+              <label><i class="fa-solid fa-filter"></i> Risk Level Filter:</label>
+              <select id="risk-filter-select" class="custom-select">
+                <option value="ALL">All Risk Levels</option>
+                <option value="CRITICAL">Critical Risk (≥75%)</option>
+                <option value="HIGH">High Risk (≥40%)</option>
+                <option value="ELEVATED">Elevated Risk (≥20%)</option>
+                <option value="LOW">Low Risk (&lt;20%)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table" id="tx-table">
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Timestamp</th>
+                  <th>User ID</th>
+                  <th>Amount</th>
+                  <th>Merchant Sector</th>
+                  <th>Device Type</th>
+                  <th>Card / POS</th>
+                  <th>Risk Score</th>
+                  <th>Status</th>
+                  <th>XAI Explanation</th>
+                </tr>
+              </thead>
+              <tbody id="tx-table-body">
+                <tr>
+                  <td colspan="10" class="loading-cell"><i class="fa-solid fa-spinner fa-spin"></i> Ingesting feature store data...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal / Slide-out Panel for SHAP XAI Deep Dive -->
+      <div id="xai-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+          <div class="modal-header">
+            <div>
+              <h2><i class="fa-solid fa-brain text-accent"></i> Explainable AI (XAI) Deep Dive</h2>
+              <p id="modal-tx-id">Transaction ID: --</p>
+            </div>
+            <button id="modal-close-btn" class="modal-close">&times;</button>
+          </div>
+
+          <div class="modal-body">
+            <!-- Natural Language Explanation Box -->
+            <div class="nl-explanation-box" id="nl-box">
+              <div class="nl-header">
+                <span class="risk-badge" id="modal-risk-badge">--</span>
+                <span id="modal-recommendation" class="recommendation-text">--</span>
+              </div>
+              <p id="modal-summary-text" class="summary-paragraph">Loading narrative rationale...</p>
+              <ul id="modal-reasons-list" class="reasons-list"></ul>
+            </div>
+
+            <!-- SHAP Waterfall Feature Contribution Chart -->
+            <div class="chart-box">
+              <h4><i class="fa-solid fa-chart-bar text-primary"></i> SHAP Feature Impact Breakdown</h4>
+              <p class="chart-sub">Red bars push transaction risk UP; Green bars push risk DOWN towards legitimate baseline.</p>
+              <div class="chart-wrapper">
+                <canvas id="shapChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Decision Desk Actions -->
+            <div class="analyst-action-bar">
+              <span>Analyst Action:</span>
+              <button class="btn btn-action-approve" onclick="handleAnalystAction('APPROVE')">
+                <i class="fa-solid fa-check"></i> Approve Transaction
+              </button>
+              <button class="btn btn-action-block" onclick="handleAnalystAction('BLOCK')">
+                <i class="fa-solid fa-ban"></i> Block &amp; Freeze Account
+              </button>
+              <button class="btn btn-action-escalate" onclick="handleAnalystAction('ESCALATE')">
+                <i class="fa-solid fa-flag"></i> Escalate to Fraud Ops
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-time Simulator Section -->
+      <section class="content-section" id="section-simulator">
+        <div class="grid-2col">
+          <!-- Form & Quick Presets -->
+          <div class="section-card">
+            <div class="section-header">
+              <h3><i class="fa-solid fa-sliders text-warning"></i> Real-time Attack Simulator</h3>
+              <p>Test custom vectors or load predefined financial fraud anomaly patterns</p>
+            </div>
+
+            <!-- Preset Attack Buttons -->
+            <div class="preset-container">
+              <span class="preset-label"><i class="fa-solid fa-bolt"></i> Quick Fraud Attack Vectors:</span>
+              <div class="preset-buttons">
+                <button class="preset-btn danger" onclick="loadPreset('account_takeover')">
+                  <i class="fa-solid fa-user-ninja"></i> Account Takeover (₹4.85 Lakh)
+                </button>
+                <button class="preset-btn warning" onclick="loadPreset('impossible_travel')">
+                  <i class="fa-solid fa-plane-slash"></i> Impossible Travel (₹1.85 Lakh)
+                </button>
+                <button class="preset-btn info" onclick="loadPreset('velocity_spike')">
+                  <i class="fa-solid fa-gauge-high"></i> Rapid Velocity Burst (₹25K)
+                </button>
+                <button class="preset-btn success" onclick="loadPreset('legitimate')">
+                  <i class="fa-solid fa-cart-shopping"></i> Normal Grocery (₹450)
+                </button>
+              </div>
+            </div>
+
+            <form id="sim-form" class="sim-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>User Identifier</label>
+                  <input type="text" id="sim-user" value="USER_0042" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Amount (₹)</label>
+                  <input type="number" id="sim-amount" value="485000.00" step="500" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Merchant Sector</label>
+                  <select id="sim-category" class="form-control">
+                    <option value="crypto_exchange" selected>Crypto Exchange (High Risk)</option>
+                    <option value="jewelry_gold">Jewelry &amp; Gold (High Risk)</option>
+                    <option value="upi_p2p">UPI / P2P Transfer (High Risk)</option>
+                    <option value="electronics_mobiles">Electronics &amp; Mobiles</option>
+                    <option value="online_shopping">Online Shopping</option>
+                    <option value="travel_irctc">IRCTC / Travel</option>
+                    <option value="kirana_grocery">Kirana &amp; Grocery Store</option>
+                    <option value="petrol_pump">Fuel &amp; Petrol Pump</option>
+                    <option value="restaurants_food">Restaurants &amp; Dining</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Device Type</label>
+                  <select id="sim-device" class="form-control">
+                    <option value="web_browser" selected>Web Browser</option>
+                    <option value="mobile_app">Mobile App</option>
+                    <option value="pos_terminal">POS Terminal</option>
+                    <option value="atm">ATM</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Distance from Prior Transaction (km)</label>
+                  <input type="number" id="sim-distance" value="1450" step="50" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Seconds Since Prior Transaction</label>
+                  <input type="number" id="sim-timedelta" value="15" step="5" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Card / POS Present Flag</label>
+                  <select id="sim-card-present" class="form-control">
+                    <option value="0" selected>0 (Card Not Present / Online)</option>
+                    <option value="1">1 (Card Present / Physical Chip)</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                <i class="fa-solid fa-microchip"></i> Evaluate Live Fraud Risk &amp; Generate SHAP
+              </button>
+            </form>
+          </div>
+
+          <!-- Simulator Live Result Card -->
+          <div class="section-card" id="sim-result-card">
+            <div class="section-header">
+              <h3><i class="fa-solid fa-gauge-high text-info"></i> Real-time Scoring Result</h3>
+              <p id="sim-latency-tag">Latency: -- ms</p>
+            </div>
+
+            <div class="sim-score-display">
+              <div class="gauge-wrapper">
+                <div class="score-number" id="sim-score-pct">0.0%</div>
+                <div class="score-label">Predicted Fraud Probability</div>
+              </div>
+              <div class="risk-badge-lg" id="sim-risk-badge">AWAITING EVALUATION</div>
+            </div>
+
+            <div class="sim-narrative-box">
+              <h4><i class="fa-solid fa-comment-dots"></i> Natural Language Explanation</h4>
+              <p id="sim-summary">Submit the form or click a scenario preset to run real-time scoring.</p>
+              <ul id="sim-reasons-list" class="reasons-list"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics & Metrics Section -->
+      <section class="content-section" id="section-analytics">
+        <div class="grid-2col">
+          <div class="section-card">
+            <div class="section-header">
+              <h3><i class="fa-solid fa-sitemap text-primary"></i> Global Feature Importances</h3>
+              <p>Top data engineered features driving the LightGBM classifier globally</p>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="importanceChart"></canvas>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="section-header">
+              <h3><i class="fa-solid fa-square-poll-vertical text-success"></i> Confusion Matrix &amp; Cost ROI</h3>
+              <p>Detection accuracy, operational threshold, and financial savings</p>
+            </div>
+            <div class="cm-display-grid">
+              <div class="cm-box tp">
+                <div class="cm-val" id="cm-tp">--</div>
+                <div class="cm-lbl">True Positives (Detected Fraud)</div>
+              </div>
+              <div class="cm-box fp">
+                <div class="cm-val" id="cm-fp">--</div>
+                <div class="cm-lbl">False Positives (False Alarms)</div>
+              </div>
+              <div class="cm-box fn">
+                <div class="cm-val" id="cm-fn">--</div>
+                <div class="cm-lbl">False Negatives (Missed Fraud)</div>
+              </div>
+              <div class="cm-box tn">
+                <div class="cm-val" id="cm-tn">--</div>
+                <div class="cm-lbl">True Negatives (Legitimate)</div>
+              </div>
+            </div>
+            <div class="cost-summary-box">
+              <div class="cost-stat">
+                <span class="cost-lbl">Net Fraud Savings Avoided:</span>
+                <span class="cost-val text-success" id="cost-net-savings">--</span>
+              </div>
+              <div class="cost-stat">
+                <span class="cost-lbl">Cost-Optimal Decision Threshold:</span>
+                <span class="cost-val text-primary" id="cost-optimal-th">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Feature Drift PSI Monitor -->
+      <section class="content-section" id="section-drift">
+        <div class="section-card">
+          <div class="section-header">
+            <div>
+              <h3><i class="fa-solid fa-chart-line text-info"></i> Continuous Feature Drift Monitor (Population Stability Index - PSI)</h3>
+              <p>Detects distribution shifts between baseline training dataset and live incoming feature store transactions</p>
+            </div>
+            <div>
+              <span class="badge badge-low" id="overall-drift-badge">MONITORING ACTIVE</span>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table" id="drift-table">
+              <thead>
+                <tr>
+                  <th>Feature Name</th>
+                  <th>Population Stability Index (PSI)</th>
+                  <th>Drift Threshold Status</th>
+                  <th>Interpretation &amp; Action</th>
+                </tr>
+              </thead>
+              <tbody id="drift-table-body">
+                <tr>
+                  <td colspan="4" class="loading-cell"><i class="fa-solid fa-spinner fa-spin"></i> Calculating PSI drift distributions...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="drift-legend">
+            <span class="legend-item"><span class="badge badge-low">PSI &lt; 0.10</span> Stable (No Significant Shift)</span>
+            <span class="legend-item"><span class="badge badge-high">0.10 ≤ PSI ≤ 0.25</span> Moderate Drift (Monitor Window)</span>
+            <span class="legend-item"><span class="badge badge-critical">PSI &gt; 0.25</span> Critical Drift (Model Retraining Required)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Fairness & Demographic/Channel Audit -->
+      <section class="content-section" id="section-fairness">
+        <div class="section-card">
+          <div class="section-header">
+            <div>
+              <h3><i class="fa-solid fa-scale-balanced text-accent"></i> Algorithmic Fairness &amp; Channel Parity Audit</h3>
+              <p>Audits False Positive Rate (FPR) and Recall across merchant categories and device channels to ensure equitable decisions</p>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table" id="fairness-table">
+              <thead>
+                <tr>
+                  <th>Attribute Dimension</th>
+                  <th>Cohort / Channel Group</th>
+                  <th>Sample Count (N)</th>
+                  <th>False Positive Rate (FPR)</th>
+                  <th>Detection Recall</th>
+                  <th>Parity Assessment</th>
+                </tr>
+              </thead>
+              <tbody id="fairness-table-body">
+                <tr>
+                  <td colspan="6" class="loading-cell"><i class="fa-solid fa-spinner fa-spin"></i> Auditing cohort parity metrics...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Multi-Model Ablation Study Benchmark -->
+      <section class="content-section" id="section-ablation">
+        <div class="section-card">
+          <div class="section-header">
+            <div>
+              <h3><i class="fa-solid fa-flask-vial text-warning"></i> Multi-Model &amp; Feature Ablation Study Benchmark</h3>
+              <p>Chronological 60/15/25 split comparing Logistic Regression, Decision Trees, and LightGBM across feature subsets and imbalance methods</p>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table" id="ablation-table">
+              <thead>
+                <tr>
+                  <th>Feature Set</th>
+                  <th>Classifier Model</th>
+                  <th>Imbalance Method</th>
+                  <th>Threshold</th>
+                  <th>Precision</th>
+                  <th>Recall</th>
+                  <th>F1 Score</th>
+                  <th>PR-AUC</th>
+                  <th>ROC-AUC</th>
+                  <th>Savings Ratio (%)</th>
+                </tr>
+              </thead>
+              <tbody id="ablation-table-body">
+                <tr>
+                  <td colspan="10" class="loading-cell"><i class="fa-solid fa-spinner fa-spin"></i> Loading ablation experimental benchmark...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

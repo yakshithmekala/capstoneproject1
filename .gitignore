@@ -1,0 +1,27 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+env/
+venv/
+ENV/
+.venv/
+
+# Data and large binaries (DuckDB database files)
+data/*.duckdb
+data/*.duckdb.wal
+
+# Results cache if needed
+# (keep results/ablation_results.csv for reports)
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

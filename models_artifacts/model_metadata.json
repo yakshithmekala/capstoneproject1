@@ -1,0 +1,31 @@
+{
+  "feature_columns": [
+    "amount",
+    "log_amount",
+    "location_lat",
+    "location_long",
+    "card_present",
+    "amount_ratio_to_user_avg",
+    "amount_z_score",
+    "robust_monetary_zscore",
+    "time_since_prev_txn_sec",
+    "recency_decay_score",
+    "distance_prev_txn_km",
+    "travel_speed_kmh",
+    "txn_count_1h",
+    "txn_count_24h",
+    "spending_sum_24h",
+    "is_high_risk_category",
+    "is_night_transaction",
+    "merchant_category_freq",
+    "device_type_freq",
+    "isolation_forest_anomaly_score"
+  ],
+  "best_threshold": 0.1,
+  "cost_optimal_threshold": 0.0227,
+  "max_savings_pct": 99.96,
+  "train_samples": 160,
+  "test_samples": 40,
+  "fraud_ratio_train": 0.0375,
+  "scale_pos_weight": 25.666666666666668
+}
