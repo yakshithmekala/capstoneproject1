@@ -14,14 +14,7 @@ from src.explainability.nl_explainer import generate_natural_language_explanatio
 from src.api.main import app
 
 
-@pytest.fixture(scope="module", autouse=True)
-def setup_pipeline():
-    """
-    Run pipeline once to generate test DuckDB warehouse & trained model artifacts.
-    """
-    feat_df = run_data_pipeline(num_records=500, fraud_rate=0.04, random_seed=42)
-    model, scaler, X_test, y_test, metadata = train_fraud_detection_model(feat_df)
-    evaluate_fraud_model(model, scaler, X_test, y_test, threshold=metadata['best_threshold'])
+
 
 
 def test_generator_schema():
