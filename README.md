@@ -1,11 +1,15 @@
 # Sentinel AI — Scalable Fraud Detection System Using Data Engineering Pipelines and Explainable AI (XAI)
 
-[![CI/CD Pipeline](https://github.com/yakshithmekala/capstoneproject/actions/workflows/ci.yml/badge.svg)](https://github.com/yakshithmekala/capstoneproject/actions)
+[![Live Demo](https://img.shields.io/badge/Live_Dashboard-GitHub_Pages-2ea44f?style=for-the-badge&logo=github)](https://yakshithmekala.github.io/capstoneproject1/)
+
+[![CI/CD Pipeline](https://github.com/yakshithmekala/capstoneproject1/actions/workflows/ci.yml/badge.svg)](https://github.com/yakshithmekala/capstoneproject1/actions)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg)](https://fastapi.tiangolo.com)
 [![DuckDB](https://img.shields.io/badge/DuckDB-In--Memory%20Warehouse-FFF000.svg)](https://duckdb.org/)
 [![LightGBM](https://img.shields.io/badge/LightGBM-Gradient%20Boosting-brightgreen.svg)](https://lightgbm.readthedocs.io/)
 [![SHAP](https://img.shields.io/badge/SHAP-TreeExplainer%20XAI-ff69b4.svg)](https://shap.readthedocs.io/)
+
+> 🌐 **Interactive Live Dashboard:** [https://yakshithmekala.github.io/capstoneproject1/](https://yakshithmekala.github.io/capstoneproject1/)
 
 An enterprise-grade, end-to-end Financial Fraud Detection and Risk Intelligence System built with high-performance Data Engineering ETL pipelines, vectorized **DuckDB** analytical warehouse, **LightGBM** cost-weighted classification, **Baesens et al. (2022)** instance-dependent financial cost metrics, continuous **Population Stability Index (PSI)** drift detection, **algorithmic fairness auditing**, and **SHAP Explainable AI** with automated natural language compliance investigator reports.
 
