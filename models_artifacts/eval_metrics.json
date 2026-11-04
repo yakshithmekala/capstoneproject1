@@ -1,120 +1,197 @@
 {
-  "precision": 0.8,
+  "precision": 1.0,
   "recall": 1.0,
-  "f1_score": 0.8889,
+  "f1_score": 1.0,
   "roc_auc": 1.0,
   "pr_auc": 1.0,
   "confusion_matrix": {
-    "true_negatives": 95,
-    "false_positives": 1,
+    "true_negatives": 1927,
+    "false_positives": 0,
     "false_negatives": 0,
-    "true_positives": 4
+    "true_positives": 73
   },
   "decision_threshold": 0.1,
   "cost_metrics": {
-    "baseline_loss_without_model": 171609.33,
-    "total_cost_with_model": 25.0,
-    "net_savings_amount": 171584.33,
+    "baseline_loss_without_model": 2461808.41,
+    "total_cost_with_model": 365.0,
+    "net_savings_amount": 2461443.41,
     "savings_ratio_pct": 99.99,
-    "cost_optimal_threshold": 0.9881,
-    "cost_optimal_savings_pct": 99.99,
+    "cost_optimal_threshold": 0.0001,
+    "cost_optimal_savings_pct": 99.98,
     "alert_fee_c_f": 5.0
   },
   "fairness_audit": [
     {
-      "attribute": "risk_tier",
-      "group": "High-Risk Categories",
-      "count": 28,
+      "attribute": "merchant_category",
+      "group": "crypto_exchange",
+      "count": 241,
       "fpr": 0.0,
       "recall": 1.0
     },
     {
-      "attribute": "risk_tier",
-      "group": "Standard Categories",
-      "count": 72,
-      "fpr": 0.0139,
+      "attribute": "merchant_category",
+      "group": "electronics_mobiles",
+      "count": 219,
+      "fpr": 0.0,
       "recall": 0.0
+    },
+    {
+      "attribute": "merchant_category",
+      "group": "jewelry_gold",
+      "count": 233,
+      "fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "attribute": "merchant_category",
+      "group": "kirana_grocery",
+      "count": 218,
+      "fpr": 0.0,
+      "recall": 0.0
+    },
+    {
+      "attribute": "merchant_category",
+      "group": "online_shopping",
+      "count": 204,
+      "fpr": 0.0,
+      "recall": 0.0
+    },
+    {
+      "attribute": "merchant_category",
+      "group": "petrol_pump",
+      "count": 211,
+      "fpr": 0.0,
+      "recall": 0.0
+    },
+    {
+      "attribute": "merchant_category",
+      "group": "restaurants_food",
+      "count": 224,
+      "fpr": 0.0,
+      "recall": 0.0
+    },
+    {
+      "attribute": "merchant_category",
+      "group": "travel_irctc",
+      "count": 206,
+      "fpr": 0.0,
+      "recall": 0.0
+    },
+    {
+      "attribute": "merchant_category",
+      "group": "upi_p2p",
+      "count": 244,
+      "fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "attribute": "device_type",
+      "group": "atm",
+      "count": 100,
+      "fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "attribute": "device_type",
+      "group": "mobile_app",
+      "count": 859,
+      "fpr": 0.0,
+      "recall": 1.0
+    },
+    {
+      "attribute": "device_type",
+      "group": "pos_terminal",
+      "count": 65,
+      "fpr": 0.0,
+      "recall": 0.0
+    },
+    {
+      "attribute": "device_type",
+      "group": "web_browser",
+      "count": 976,
+      "fpr": 0.0,
+      "recall": 1.0
     }
   ],
   "feature_importances": [
     {
       "feature": "robust_monetary_zscore",
-      "importance": 351
+      "importance": 651
     },
     {
       "feature": "amount_ratio_to_user_avg",
-      "importance": 323
+      "importance": 555
     },
     {
       "feature": "amount",
-      "importance": 244
-    },
-    {
-      "feature": "location_long",
-      "importance": 176
+      "importance": 432
     },
     {
       "feature": "amount_z_score",
-      "importance": 150
-    },
-    {
-      "feature": "isolation_forest_anomaly_score",
-      "importance": 120
-    },
-    {
-      "feature": "location_lat",
-      "importance": 57
-    },
-    {
-      "feature": "time_since_prev_txn_sec",
-      "importance": 16
+      "importance": 313
     },
     {
       "feature": "log_amount",
-      "importance": 14
+      "importance": 241
     },
     {
-      "feature": "txn_count_24h",
-      "importance": 4
+      "feature": "isolation_forest_anomaly_score",
+      "importance": 227
     },
     {
-      "feature": "distance_prev_txn_km",
-      "importance": 2
-    },
-    {
-      "feature": "recency_decay_score",
-      "importance": 2
+      "feature": "time_since_prev_txn_sec",
+      "importance": 174
     },
     {
       "feature": "spending_sum_24h",
-      "importance": 2
+      "importance": 136
     },
     {
-      "feature": "card_present",
-      "importance": 0
+      "feature": "distance_prev_txn_km",
+      "importance": 103
     },
     {
-      "feature": "travel_speed_kmh",
-      "importance": 0
-    },
-    {
-      "feature": "txn_count_1h",
-      "importance": 0
+      "feature": "location_lat",
+      "importance": 69
     },
     {
       "feature": "is_high_risk_category",
-      "importance": 0
-    },
-    {
-      "feature": "is_night_transaction",
-      "importance": 0
+      "importance": 62
     },
     {
       "feature": "merchant_category_freq",
-      "importance": 0
+      "importance": 46
+    },
+    {
+      "feature": "location_long",
+      "importance": 34
+    },
+    {
+      "feature": "recency_decay_score",
+      "importance": 33
+    },
+    {
+      "feature": "txn_count_24h",
+      "importance": 28
+    },
+    {
+      "feature": "travel_speed_kmh",
+      "importance": 21
+    },
+    {
+      "feature": "txn_count_1h",
+      "importance": 5
+    },
+    {
+      "feature": "is_night_transaction",
+      "importance": 2
     },
     {
       "feature": "device_type_freq",
+      "importance": 1
+    },
+    {
+      "feature": "card_present",
       "importance": 0
     }
   ]

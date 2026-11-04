@@ -22,10 +22,10 @@
     "isolation_forest_anomaly_score"
   ],
   "best_threshold": 0.1,
-  "cost_optimal_threshold": 0.0227,
-  "max_savings_pct": 99.96,
-  "train_samples": 160,
-  "test_samples": 40,
-  "fraud_ratio_train": 0.0375,
-  "scale_pos_weight": 25.666666666666668
+  "cost_optimal_threshold": 0.0001,
+  "max_savings_pct": 99.98,
+  "train_samples": 8000,
+  "test_samples": 2000,
+  "fraud_ratio_train": 0.036375,
+  "scale_pos_weight": 26.491408934707902
 }
